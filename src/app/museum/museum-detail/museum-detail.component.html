@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-lg-6 col-md-12 col-sm-12">
+    <label><strong i18n>Museum</strong>: {{ museumDetail.name }}</label
+    ><br />
+    <label><strong i18n>Address</strong>: {{ museumDetail.address }}</label
+    ><br />
+    <label><strong i18n>City</strong>: {{ museumDetail.city }}</label
+    ><br />
+    <label><strong i18n>Description</strong>:</label><br />
+    <p>
+      {{ museumDetail.description }}
+    </p>
+
+    <img src="{{ museumDetail.image }}" class="img-fluid" alt="..." />
+  </div>
+  <br>
+  <div class="col-lg-6 col-md-12 col-sm-12" id="tablaListadoExhibicion">
+    <br>
+    <label><strong>Exhibicions</strong>:</label><br />
+    <app-exhibicion-list [idMuseum] = "museumDetail.id"></app-exhibicion-list>
+  </div>
+</div>

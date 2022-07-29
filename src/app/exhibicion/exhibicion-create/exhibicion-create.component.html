@@ -1,0 +1,77 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col text-center">
+      <h1 i18n class="display-1">EXHIBITION</h1>
+    </div>
+  </div>
+  <br />
+  <h3 i18n >Create a new Exhibition</h3>
+  <br />
+
+  <form [formGroup]="exhibitionForm" (ngSubmit)="!exhibitionForm.invalid && createExhibicion(exhibitionForm.value)">
+    <div class="mb-3">
+      <label i18n for="name" class="form-label">Name</label>
+      <input novalidate type="text" class="form-control" id="name" formControlName="name"
+        placeholder="Name of sponsor" />
+      <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+      exhibitionForm.get('name')!.hasError('required') &&
+      exhibitionForm.get('name')!.touched
+      ">
+        Name required
+      </div>
+      <div class="alert alert-danger alert-dismissible fade show"
+        *ngIf="exhibitionForm.get('name')!.hasError('minlength')">
+        Name too short
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label i18n for="description" class="form-label">Description</label>
+      <input novalidate type="text" class="form-control" id="description" formControlName="description"
+        placeholder="Description of sponsor" />
+      <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+      exhibitionForm.get('description')!.hasError('required') &&
+      exhibitionForm.get('description')!.touched
+      ">
+        Description required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label i18n for="idSponsor" class="form-label">Sponsor</label>
+      <select novalidate formControlName="idSponsor" class="form-control"  id="idSponsor" placeholder="Choose the sponsor of tthe exhibition">
+        <option [ngValue]="null" disabled >Choose the sponsor of the exhibition</option>
+        <option *ngFor="let sp of sponsors let i = index" [ngValue]="sp.id"> {{ sp.name }} </option>
+      </select>
+      <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+      exhibitionForm.get('idSponsor')!.hasError('required') &&
+      exhibitionForm.get('idSponsor')!.touched
+      ">
+        Sponsor required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label i18n for="idMuseum" class="form-label">Museum</label>
+      <select novalidate formControlName="idMuseum" class="form-control"  id="idMuseum" placeholder="Choose the sponsor of the museum">
+        <option [ngValue]="null" disabled >Choose the museum</option>
+        <option *ngFor="let ms of museums" [ngValue]="ms.id"> {{ ms.name }} </option>
+      </select>
+      <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+      exhibitionForm.get('idMuseum')!.hasError('required') &&
+      exhibitionForm.get('idMuseum')!.touched
+      ">
+        Museum required
+      </div>
+    </div>
+
+    <button i18n type="button" class="btn btn-secondary" (click)="cancelCreation()">
+      Cancel
+    </button>
+
+    <button i18n type="submit" class="btn btn-primary" [disabled]="!exhibitionForm.valid">
+      Save
+    </button>
+  </form>
+</div>

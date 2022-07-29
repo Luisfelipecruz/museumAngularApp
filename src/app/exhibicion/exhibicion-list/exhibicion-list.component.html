@@ -1,0 +1,189 @@
+<!------------------------- LISTTADO QUE SE RENDERIZA EN DETALLE MUSEO ------------------------->
+
+<div class="col-lg-12 col-md-12 col-sm-12" *ngIf="selected && !vieneNavbar">
+  <table class="table align-middle table-hover">
+    <thead>
+      <tr>
+        <th i18n scope="col">Name</th>
+        <th i18n scope="col">Sponsor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exhibicion of exhibicionesAll">
+        <td>
+          {{ exhibicion.name }}
+        </td>
+        <td>
+          {{ exhibicion.sponsor.name }}
+        </td>
+        <td>
+          <a i18n type="button" class="btn btn-info" routerLink="/exhibicion//{{idMuseum}}">See</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!------------------------- LISTTADO RUTA EXHIBICION ------------------------->
+
+
+<!-- <app-exhibicion-create> </app-exhibicion-create> -->
+<div class="container" *ngIf="vieneNavbar && selected">
+  <div class="row">
+    <div class="col text-center">
+      <h1 i18n class="display-1">EXHIBITION</h1>
+    </div>
+  </div>
+
+  <div class="row" id="ActionesModuloExhibiciones">
+    <div class="col-2">
+      <a i18n class="btn btn-primary" routerLink="/exhibicion/createSponsor">Create sponsor</a>
+    </div>
+
+    <div class="col-4">
+      <a i18n class="btn btn-primary" routerLink="/exhibicion/createExhibicion">Create Exhibition</a>
+    </div>
+
+    <div class="col-6" id="buttonListarObras" *ngIf="verDetalle == true">
+      <a i18n class="btn btn-primary" (click)="desplegarObras()">Assign artwork to exhibition [<strong>{{selectedExhibicion.name}}</strong>] </a>
+    </div>
+
+  </div>
+
+  <div class="row" *ngIf="vieneNavbar">
+
+    <div class="{{ (verDetalle == true) ? 'col-lg-4 col-md-12 col-sm-12' : 'col-lg-12 col-md-12 col-sm-12' }}">
+      <table class="table align-middle table-hover">
+        <caption i18n > Exhibition list </caption>
+        <thead>
+          <tr>
+            <th i18n scope="col">Name</th>
+            <th i18n scope="col">Sponsor</th>
+            <th i18n scope="col">#</th>
+            <th i18n scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let exhibicion of exhibicionesAll">
+            <td>
+              {{ exhibicion.name }}
+            </td>
+            <td>
+              {{ exhibicion.sponsor.name }}
+            </td>
+            <td>
+              {{ exhibicion.artworks.length }}
+            </td>
+            <td>
+              <a routerLink="/museum/{{exhibicion.idMuseum}}" type="button" class="btn btn-info"
+                style=" margin-right: 10px !important;">Museum</a>
+            </td>
+            <td (click)="onSelected(exhibicion)">
+              <button i18n type="button" class="btn btn-info">Detail</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="{{ (verDetalle == true) ? 'col-lg-8 col-md-12 col-sm-12' : 'col-lg-12 col-md-12 col-sm-12' }}">
+
+      <div class="row" id="tablaListadoObrasParaSelect">
+        <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="verObras">
+          <table class="table align-middle table-hover">
+            <caption i18n > Exhibition list </caption>
+            <thead>
+              <tr>
+                <th i18n scope="col">Name Artwork</th>
+                <th i18n scope="col">Year</th>
+                <th i18n scope="col">Type</th>
+                <th i18n scope="col">Image</th>
+                <th i18n scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let obra of artworkAll">
+                <td>
+                  {{ obra.name }} [{{ obra.artist.name }}]
+                </td>
+                <td>
+                  {{ obra.year }}
+                </td>
+                <td>
+                  {{ obra.type }}
+                </td>
+                <td style=" width:15%; height:15%; vertical-align: middle !important;">
+                  <img src={{obra.mainImage}} class="d-block w-100" alt={{obra.name}}>
+                <td>
+                  <a i18n class="btn btn-primary" (click)="asignarObraParaExhibicion(selectedExhibicion,obra.id )">Assign</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row" id="tablaDetalleDescripcionExhibicion">
+        <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="verDetalle && !verObras">
+          <table class="table align-middle table-hover">
+            <caption i18n > Detail of the exhibits </caption>
+            <thead>
+              <tr>
+                <th i18n scope="col">Exhibition description</th>
+                <th i18n scope="col">Sponsor description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  {{ selectedExhibicion.description }}
+                </td>
+                <td>
+                  {{ selectedExhibicion.sponsor.description }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row" id="tablaListadoObrasExhibicion">
+        <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="verDetalle && !verObras">
+          <table class="table align-middle table-hover">
+            <caption i18n > Exhibition artwork list </caption>
+            <thead>
+              <tr>
+                <th i18n scope="col">Name</th>
+                <th i18n scope="col">Year </th>
+                <th i18n scope="col">Type</th>
+                <th i18n scope="col">Description</th>
+                <th i18n scope="col">Image</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let obra of selectedExhibicion.artworks">
+                <td>
+                  {{ obra.name }}
+                </td>
+                <td>
+                  {{ obra.year }}
+                </td>
+                <td>
+                  {{ obra.type }}
+                </td>
+                <td>
+                  {{ obra.description }}
+                </td>
+                <td>
+                  <img src={{obra.mainImage}} class="d-block w-100" alt={{obra.name}}>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<router-outlet></router-outlet>

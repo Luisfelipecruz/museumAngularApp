@@ -1,0 +1,8 @@
+{
+  "extends": "../tsconfig.json",
+  "include": ["**/*.ts", "integration/artist-list.spec.js", "integration/HU03-listadoExhibiciones.spec.js"],
+  "compilerOptions": {
+    "sourceMap": false,
+    "types": ["cypress"]
+  }
+}

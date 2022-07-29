@@ -1,0 +1,88 @@
+<h3 i18n>New Artwork</h3>
+<br />
+<form [formGroup]="artworkForm" (ngSubmit)="!artworkForm.invalid && createArtwork(artworkForm.value)">
+  <h4 i18n>Artwork</h4>
+  <br />
+  <div class="mb-3">
+    <label for="idArtist" class="form-label">Artista</label>
+    <select class="form-select" formControlName="idArtist">
+      <option i18n value="0" selected>Select artist</option>
+      <option *ngFor="let artist of artists" [ngValue]="artist.id">
+        {{ artist.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label i18n for="name" class="form-label">Name</label>
+    <input novalidate type="text" class="form-control" id="name" formControlName="name"
+      placeholder="Nombre del museo" />
+    <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="
+        artworkForm.get('name')!.hasError('required') &&
+        artworkForm.get('name')!.touched">
+      Name required
+    </div>
+    <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="artworkForm.get('name')!.hasError('minlength')">
+      Name too short
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label i18n for="description" class="form-label">Description</label>
+    <textarea novalidate class="form-control" id="description" rows="3" formControlName="description"></textarea>
+    <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="artworkForm.get('description')!.hasError('required') &&
+         artworkForm.get('description')!.touched">
+      Description required
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="year" class="form-label">Year</label>
+    <input novalidate type="text" class="form-control" id="year" formControlName="year" placeholder="A;o de la obra" />
+    <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="
+        artworkForm.get('year')!.hasError('required') &&
+        artworkForm.get('year')!.touched">
+      Year required
+    </div>
+    <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="artworkForm.get('year')!.hasError('minlength')">
+      Year too short
+    </div>
+  </div>
+
+  <h4 i18n>Image</h4>
+  <br />
+  <div class="mb-3">
+    <label for="altText" class="form-label">Alt Text</label>
+    <input novalidate type="text" class="form-control" id="altText" formControlName="altText"
+      placeholder="Alt text image" />
+  </div>
+
+  <div class="mb-3">
+    <label i18n for="height" class="form-label">Height</label>
+    <input novalidate type="text" class="form-control" id="height" formControlName="height"
+      placeholder="Altura de la image" />
+  </div>
+
+  <div class="mb-3">
+    <label i18n for="width" class="form-label">Width</label>
+    <input novalidate type="text" class="form-control" id="width" formControlName="width"
+      placeholder="Ancho de la imagen" />
+  </div>
+
+  <div class="mb-3">
+    <label i18n for="mainImage" class="form-label">Url Image</label>
+    <textarea novalidate class="form-control" id="mainImage" rows="3" formControlName="mainImage"></textarea>
+    <div i18n class="alert alert-danger alert-dismissible fade show" *ngIf="artworkForm.get('mainImage')!.hasError('required') &&
+         artworkForm.get('mainImage')!.touched">
+      Url required
+    </div>
+  </div>
+
+  <br>
+  <button i18n type="button" class="btn btn-secondary" (click)="cancelCreation()">
+    Cancel
+  </button>
+  <button type="submit" class="btn btn-primary" [disabled]="!artworkForm.valid">
+    Save
+  </button>
+</form>

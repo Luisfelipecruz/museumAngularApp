@@ -1,0 +1,20 @@
+<div class="container">
+  <br />
+  <div class="row">
+    <div class="col-12">
+      <h3>Exhibicion:</h3>
+      <label><strong>Nombre: </strong> {{ exhibicionDetail.name }}</label><br />
+      <label><strong>Type: </strong> {{ exhibicionDetail.name }}</label><br />
+      <label><strong>Descripción: </strong></label><br />
+      <p>
+        {{ exhibicionDetail.description }}}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <app-artwork-list  [exhibitionId]="exhibicionDetail.id" ></app-artwork-list>
+  </div>
+</div>

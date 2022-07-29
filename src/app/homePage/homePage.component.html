@@ -1,0 +1,52 @@
+<section class="boot-elemant-bg py-md-5 py-4" style="background-image: url(https://via.placeholder.com/1920/09f.png/fff);">
+  <div class="container position-relative py-md-5 py-0">
+      <div class="row">
+          <div class="col-lg-6 col-md-12 col-sm-12 box" id="museoSeccionCarrusel">
+              <span i18n class="text-white text-uppercase">Museums </span>
+              <h2 i18n class="text-white display-3 font-weight-bold">Visit one of our museums</h2>
+              <p i18n class="f-w-16 mb-4">Each one better than the last, with a different exhibition of temporary character.</p>
+              <a i18n href="museum" class="btn btn-outline-white btn-lg px-4"> See museums </a>
+          </div>
+          <br/>
+          <div class="col-lg-6 col-md-12 col-sm-12">
+            <app-carrusel [dataArrayMuseum]="dataMuseum"></app-carrusel>
+        </div>
+      </div>
+
+  </div>
+  <div class="elemant-bg-overlay black"></div>
+</section>
+
+<section class="boot-elemant-bg py-md-5 py-4">
+  <div class="container position-relative py-md-5 py-0">
+    <div class="row">
+      <div class="col-lg-6 col-md-12 col-sm-12">
+        <app-carrusel [dataArrayArtwork]="dataArtworks"></app-carrusel>
+      </div>
+      <br />
+      <div class="col-lg-6 col-md-12 col-sm-12 box">
+        <span i18n class="text-white text-uppercase">Artworks </span>
+        <h2 i18n class="display-3 font-weight-bold">Get to know the works of our artists</h2>
+        <p i18n class="f-16 mb-4">The final product of long hours of work where all the feelings of each artist are reflected.</p>
+        <a i18n href="artwork" class="btn btn-outline-primary btn-lg px-4"> See artworks </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="boot-elemant-bg gradient-primary py-md-5 py-4">
+  <div class="container position-relative py-md-5 py-0">
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12 box">
+            <span i18n class="text-white text-uppercase">Artistas </span>
+            <h2 i18n class="text-white display-3 font-weight-bold">Get to know our artists</h2>
+            <p i18n class="f-w-16 mb-4">The fundamental basis of art is they know more details about each one and their works.</p>
+            <a i18n href="artist" class="btn btn-outline-white btn-lg px-4"> See artists </a>
+        </div>
+        <br/>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+          <app-carrusel [dataArrayArtist]="dataArtists"></app-carrusel>
+      </div>
+    </div>
+  </div>
+</section>

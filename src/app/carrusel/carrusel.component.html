@@ -1,0 +1,105 @@
+<!------------------------- CARREUSEL N1 DE MUSEOS ------------------------->
+
+<div id="carousel1" class="carousel slide" data-bs-ride="carousel">
+
+  <div *ngIf="dataArrayMuseum !== undefined">
+    <ol class="carousel-indicator hide">
+      <li *ngFor="let foto of dataArrayMuseum,let indice = index" attr.data-bs-target="#carousel1"
+        class="{{ (indice == 0) ? 'active' : '' }}" attr.data-slide-to="{{indice}}"></li>
+    </ol>
+
+    <div class="carousel-inner">
+      <div class="carousel-item" *ngFor="let mus of dataArrayMuseum let i = index" [ngClass]="{'active': i == 0 }">
+        <div class="img-block img-fluid align-items-center" role="listbox" style=" width:100%; height: 400px; vertical-align: middle !important;">
+          <img src={{mus.image}} class="d-block w-100" alt={{mus.name}}>
+        </div>
+        <div class="d-grid gap-2 col-10 mx-auto text-center">
+          <a routerLink="/museum/{{mus.id}}" class="btn btn-info btn-lg btn-block">{{mus.name + ' --> ' +mus.city}}</a>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+</div>
+
+<!------------------------- CARREUSEL N2 DE OBRAS ------------------------->
+
+<div *ngIf="dataArrayArtwork !== undefined">
+
+  <div id="carousel2" class="carousel slide" data-bs-ride="carousel">
+
+    <ol class="carousel-indicator hide">
+      <li *ngFor="let foto of dataArrayArtwork,let indice = index" attr.data-bs-target="#carousel2"
+        class="{{ (indice == 0) ? 'active' : '' }}" attr.data-slide-to="{{indice}}"></li>
+    </ol>
+
+    <div class="carousel-inner">
+      <div class="carousel-item" *ngFor="let artWork of dataArrayArtwork let i2 = index" [ngClass]="{'active': i2 == 0 }">
+        <div class="img-block" role="listbox" style=" width:100%; height: 400px; vertical-align: middle !important;">
+          <img src={{artWork.mainImage}} class="d-block w-100" alt={{artWork.name}}>
+        </div>
+        <div class="d-grid gap-2 col-10 mx-auto text-center">
+          <a routerLink="/artwork/{{artWork.id}}" class="btn btn-info btn-lg btn-block">{{artWork.name + ' --> ' +artWork.year}}</a>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span i18n class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span i18n class="visually-hidden">Next</span>
+    </button>
+
+  </div>
+
+</div>
+
+
+<!------------------------- CARREUSEL N3 DE ARTISTAS ------------------------->
+<div *ngIf="dataArrayArtist !== undefined">
+
+  <div id="carousel3" class="carousel slide" data-bs-ride="carousel">
+
+    <ol class="carousel-indicator hide">
+      <li *ngFor="let foto of dataArrayArtist,let indice = index" attr.data-bs-target="#carousel3"
+        class="{{ (indice == 0) ? 'active' : '' }}" attr.data-slide-to="{{indice}}"></li>
+    </ol>
+
+    <div class="carousel-inner">
+      <div class="carousel-item" *ngFor="let art of dataArrayArtist let i2 = index" [ngClass]="{'active': i2 == 0 }">
+        <div class="img-block" role="listbox" style=" width:100%; height: 600px; vertical-align: middle !important;">
+          <img src={{art.image}} class="d-block w-100" alt={{art.name}}>
+        </div>
+        <div class="d-grid gap-2 col-10 mx-auto text-center">
+          <button type="button" class="btn btn-info btn-lg btn-block">{{art.name + ' --> ' +art.birthplace}}</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel3" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel3" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+
+  </div>
+
+</div>

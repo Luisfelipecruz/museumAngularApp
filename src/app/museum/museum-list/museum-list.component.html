@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <h1 i18n class="display-1">Museums</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <button i18n class="btn btn-primary" (click)="onCreate()">New museum</button>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="row">
+    <div class="{{ (selected == true || create == true) ? 'col-lg-4 col-md-12 col-sm-12' : 'col-lg-12 col-md-12 col-sm-12' }}">
+      <table class="table align-middle table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th i18n scope="col">Museum</th>
+            <th i18n scope="col">Address</th>
+            <th i18n scope="col">City</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let museum of museums">
+            <td>
+              <dd>{{ museum.id }}</dd>
+            </td>
+            <td>
+              <dd>{{ museum.name }}</dd>
+            </td>
+            <td>
+              <dd>{{ museum.address }}</dd>
+            </td>
+            <td>
+              <dd>{{ museum.city }}</dd>
+            </td>
+            <td (click)="onSelected(museum)">
+              <button i18n type="button" class="btn btn-info">See</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-8 col-md-12 col-sm-12" id="tablaDetalleMuseo" *ngIf="selected">
+      <app-museum-detail [museumDetail]="selectedMuseum"></app-museum-detail>
+    </div>
+    <div class="col-lg-8 col-md-12 col-sm-12" *ngIf="create">
+      <app-museum-create></app-museum-create>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+<!-- 10. Crear el html  -->
+<!-- De nuevo a artist-create.component.ts  -->
+
+<div class="container mt-4">
+
+
+  <h2 class="text-center">Create a new artist</h2>
+    <!-- 10.1 Crear formulario  -->
+  <form
+    [formGroup]="artistForm"
+    (ngSubmit)="!artistForm.invalid && createArtist(artistForm.value)"
+  >
+    <!--Name-->
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="name">Name</label>
+      <input
+        novalidate
+        id="name"
+        class="form-control"
+        formControlName="name"
+        placeholder="Artist's name"
+      />
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="
+          artistForm.get('name')!.hasError('required') &&
+          artistForm.get('name')!.touched
+        ">
+        Name required
+      </div>
+
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="artistForm.get('name')!.hasError('minlength')"
+      >
+        Name too short
+      </div>
+
+    </div>
+
+    <!--Image-->
+    <div class="form-group mx-sm-3 mb-2">
+
+      <label for="image">Image</label>
+      <input
+        novalidate
+        id="image"
+        class="form-control"
+        formControlName="image"
+        placeholder="URL with Artist's image"
+      />
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="
+          artistForm.get('image')!.hasError('required') &&
+          artistForm.get('image')!.touched
+        "
+      >
+        Image required
+      </div>
+
+    </div>
+
+    <!--Birth Date-->
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="birthdate">Birthdate</label>
+      <input
+        novalidate
+        id="birthdate"
+        class="form-control"
+        formControlName="birthdate"
+        placeholder="Artist's birthdate"
+      />
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="
+          artistForm.get('birthdate')!.hasError('required') &&
+          artistForm.get('birthdate')!.touched
+        "
+      >
+        Birthdate required
+      </div>
+    </div>
+
+    <!--Birthplace-->
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="birthplace">Birthplace</label>
+      <input
+        novalidate
+        id="birthplace"
+        class="form-control"
+        formControlName="birthplace"
+        placeholder="Artist's birthplace"
+      />
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="
+          artistForm.get('birthplace')!.hasError('required') &&
+          artistForm.get('birthplace')!.touched
+        "
+      >
+        Birthplace required
+      </div>
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="artistForm.get('birthplace')!.hasError('maxlength')"
+      >
+        Birthplace too long
+      </div>
+    </div>
+    <!-- Definir el bontón-->
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!artistForm.valid"
+    >
+      Create
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger ml-3"
+      (click)="cancelCreation()"
+    >
+      Cancel
+    </button>
+  </form>
+
+
+</div>

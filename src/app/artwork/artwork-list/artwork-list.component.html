@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <h4 i18n *ngIf="vieneExhibicion">Artworks</h4>
+    <div class="col text-center" *ngIf="!vieneExhibicion">
+      <h1 i18n class="display-1">Artworks</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="{{ (selected == true || create == true) ? 'col-lg-4 col-md-12 col-sm-12' : 'col-lg-12 col-md-12 col-sm-12' }}">
+      <button i18n class="btn btn-primary" (click)="onCreate()">New Artwork</button>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="row">
+    <div class="{{ (selected == true || create == true) ? 'col-lg-4 col-md-12 col-sm-12' : 'col-lg-12 col-md-12 col-sm-12' }}">
+      <table class="table align-middle table-hover">
+        <thead>
+          <tr>
+            <th i18n scope="col">Number</th>
+            <th i18n scope="col">Name</th>
+            <th i18n scope="col">Year</th>
+            <th i18n scope="col">Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let artwork of artworks">
+            <td>
+              <dd>{{ artwork.id }}</dd>
+            </td>
+            <td>
+              <dd>{{ artwork.name }}</dd>
+            </td>
+            <td>
+              <dd>{{ artwork.year }}</dd>
+            </td>
+            <td>
+              <dd>{{ artwork.type }}</dd>
+            </td>
+            <td (click)="onSelected(artwork)">
+              <button i18n type="button" class="btn btn-info">See</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-lg-8 col-md-12 col-sm-12" *ngIf="selected">
+      <app-artwork-detail [artworkDetail]="selectedArtwork"></app-artwork-detail>
+    </div>
+    <div class="col-lg-8 col-md-12 col-sm-12" *ngIf="create">
+      <app-artwork-create></app-artwork-create>
+    </div>
+  </div>
+</div>

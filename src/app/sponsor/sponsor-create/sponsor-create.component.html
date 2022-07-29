@@ -1,0 +1,64 @@
+<div class="container" >
+
+  <div class="row">
+    <div class="col text-center">
+      <h1 i18n class="display-1">EXHIBITIONS</h1>
+    </div>
+  </div>
+  <br />
+  <h3 i18n >Create a new Sponsor</h3>
+  <br />
+  <form [formGroup]="sponsorForm" (ngSubmit)="!sponsorForm.invalid && createSponsor(sponsorForm.value)">
+    <div class="mb-3">
+      <label i18n for="name" class="form-label">Name</label>
+      <input novalidate type="text" class="form-control" id="name" formControlName="name"
+        placeholder="Name of sponsor" />
+      <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+      sponsorForm.get('name')!.hasError('required') &&
+      sponsorForm.get('name')!.touched
+      ">
+        Name required
+      </div>
+      <div class="alert alert-danger alert-dismissible fade show"
+        *ngIf="sponsorForm.get('name')!.hasError('minlength')">
+        Name too short
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label i18n for="description" class="form-label">Description</label>
+      <input novalidate type="text" class="form-control" id="description" formControlName="description"
+        placeholder="Description of sponsor" />
+      <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+      sponsorForm.get('description')!.hasError('required') &&
+      sponsorForm.get('description')!.touched
+      ">
+        Description required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label i18n for="website" class="form-label">Website</label>
+      <input novalidate type="text" class="form-control" id="website" formControlName="website"
+        placeholder="Website of sponsor" />
+      <div class="alert alert-danger alert-dismissible fade show" *ngIf="
+      sponsorForm.get('website')!.hasError('required') &&
+      sponsorForm.get('website')!.touched
+      ">
+        Website required
+      </div>
+      <div class="alert alert-danger alert-dismissible fade show"
+        *ngIf="sponsorForm.get('website')!.hasError('maxLength')">
+        Website too long
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-secondary" (click)="cancelCreation()">
+      Cancel
+    </button>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!sponsorForm.valid">
+      Save
+    </button>
+  </form>
+</div>

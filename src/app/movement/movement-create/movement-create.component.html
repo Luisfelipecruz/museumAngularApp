@@ -1,0 +1,140 @@
+<!-- 10. Crear el html  -->
+<!-- De nuevo a movement-create.component.ts  -->
+
+<div class="container mt-4">
+
+
+  <h2 class="text-center">Create a new movement</h2>
+    <!-- 10.1 Crear formulario  -->
+  <form
+    [formGroup]="movementForm"
+    (ngSubmit)="!movementForm.invalid && createMovement(movementForm.value)"
+  >
+    <!--Name-->
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="name">Name</label>
+      <input
+        novalidate
+        id="name"
+        class="form-control"
+        formControlName="name"
+        placeholder="Movement's name"
+      />
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="
+          movementForm.get('name')!.hasError('required') &&
+          movementForm.get('name')!.touched
+        ">
+        Name required
+      </div>
+
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="movementForm.get('name')!.hasError('minlength')"
+      >
+        Name too short
+      </div>
+    </div>
+
+        <!--Description-->
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="description">Description</label>
+          <input
+            novalidate
+            id="description"
+            class="form-control"
+            formControlName="description"
+            placeholder="Descrition's short description"
+          />
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              movementForm.get('description')!.hasError('required') &&
+              movementForm.get('description')!.touched
+            "
+          >
+            Description required
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="movementForm.get('description')!.hasError('maxlength')"
+          >
+            Description too long
+          </div>
+        </div>
+
+
+    <!--CountryOfOrigin-->
+    <div class="form-group mx-sm-3 mb-2">
+      <label for="countryOfOrigin">Country of origin</label>
+      <input
+        novalidate
+        id="countryOfOrigin"
+        class="form-control"
+        formControlName="countryOfOrigin"
+        placeholder="Movement's countryOfOrigin"
+      />
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="
+          movementForm.get('countryOfOrigin')!.hasError('required') &&
+          movementForm.get('countryOfOrigin')!.touched
+        ">
+        Country of origin required
+      </div>
+
+      <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="movementForm.get('countryOfOrigin')!.hasError('minlength')"
+      >
+        Country of origin too short
+      </div>
+    </div>
+
+        <!--ActiveYears-->
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="activeYears">Active Years</label>
+          <input
+            novalidate
+            id="activeYears"
+            class="form-control"
+            formControlName="activeYears"
+            placeholder="Movement's activeYears"
+          />
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="
+              movementForm.get('activeYears')!.hasError('required') &&
+              movementForm.get('activeYears')!.touched
+            ">
+            Active Years required
+          </div>
+
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            *ngIf="movementForm.get('activeYears')!.hasError('minlength')"
+          >
+            Active Years too short
+          </div>
+        </div>
+
+    <!-- Definir el bontón-->
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!movementForm.valid"
+    >
+      Create
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger ml-3"
+      (click)="cancelCreation()"
+    >
+      Cancel
+    </button>
+  </form>
+
+
+</div>

@@ -1,0 +1,127 @@
+<h3 i18n>New museum</h3>
+<br />
+<form
+  [formGroup]="museumForm"
+  (ngSubmit)="!museumForm.invalid && createMuseum(museumForm.value)"
+>
+  <div class="mb-3">
+    <label i18n for="name" class="form-label">Name</label>
+    <input
+      novalidate
+      type="text"
+      class="form-control"
+      id="name"
+      formControlName="name"
+      placeholder="Nombre del museo"
+    />
+    <div
+      i18n
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="
+        museumForm.get('name')!.hasError('required') &&
+        museumForm.get('name')!.touched">
+      Name required
+    </div>
+    <div
+      i18n
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="museumForm.get('name')!.hasError('minlength')">
+      Name too short
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label i18n for="address" class="form-label">Address</label>
+    <input
+      novalidate
+      type="text"
+      class="form-control"
+      id="address"
+      formControlName="address"
+      placeholder="Direccion del museo"/>
+    <div
+      i18n
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="
+        museumForm.get('address')!.hasError('required') &&
+        museumForm.get('address')!.touched">
+      Address required
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label i18n for="city" class="form-label">City</label>
+    <input
+      novalidate
+      type="text"
+      class="form-control"
+      id="city"
+      formControlName="city"
+      placeholder="Ubicacion del museo"/>
+    <div
+      i18n
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="
+        museumForm.get('city')!.hasError('required') &&
+        museumForm.get('city')!.touched">
+      City required
+    </div>
+    <div
+      i18n
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="museumForm.get('city')!.hasError('maxLength')">
+      City too long
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label i18n for="description" class="form-label">Description</label>
+    <textarea
+      novalidate
+      class="form-control"
+      id="description"
+      rows="3"
+      formControlName="description">
+    </textarea>
+    <div
+      i18n
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="
+        museumForm.get('description')!.hasError('required') &&
+        museumForm.get('description')!.touched">
+      Description required
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label i18n for="image" class="form-label">Url Image</label>
+    <textarea
+      novalidate
+      class="form-control"
+      id="image"
+      rows="3"
+      formControlName="image">
+    </textarea>
+    <div
+      i18n
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="
+        museumForm.get('image')!.hasError('required') &&
+        museumForm.get('image')!.touched">
+      Url required
+    </div>
+    <div
+      i18n
+      class="alert alert-danger alert-dismissible fade show"
+      *ngIf="museumForm.get('image')!.hasError('maxLength')">
+      Url too long
+    </div>
+  </div>
+
+  <button i18n type="button" class="btn btn-secondary" (click)="cancelCreation()">
+    Cancel
+  </button>
+  <button i18n type="submit" class="btn btn-primary" [disabled]="!museumForm.valid">
+    Save
+  </button>
+</form>

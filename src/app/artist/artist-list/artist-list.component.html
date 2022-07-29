@@ -1,0 +1,21 @@
+<div class="container">
+  <h2 class="text-center">Artistas</h2>
+  <hr />
+  <div class="row" id="containerDetalleArtista">
+    <div class="col" *ngIf="selected">
+      <app-artist-detail [artistDetail]="selectedArtist"></app-artist-detail>
+    </div>
+  </div>
+
+  <div class="row">
+    <div *ngFor="let artist of artists" class="col mb-2">
+      <div class="card p-2 mb-2" style="width: 8rem; height: 20rem">
+        <img class="card-img-top" src="{{ artist.image }}" alt="{{ artist.name }}" (click)="selectArtist(artist)" />
+        <div class="card-body">
+          <h6 class="card-title">{{ artist.name }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
